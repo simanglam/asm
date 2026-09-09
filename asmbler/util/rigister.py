@@ -1,6 +1,7 @@
 from enum import Enum, auto
 
 class RegisterEnum(Enum):
+    r0 = auto()
     r1 = auto()
     r2 = auto()
     r3 = auto()

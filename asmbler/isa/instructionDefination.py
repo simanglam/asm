@@ -1,14 +1,14 @@
 
 from dataclasses import dataclass
 
-from .opcode import Opcodes
-from .funct import FunctCode
-from .format import Format
+from ..util.opcode import Opcodes
+from ..util.funct import FunctCode
+from ..util.format import Format
 
 @dataclass
 class InstructionDefination:
     opcode: int
-    functCode: FunctCode
+    functCode: int
     format: Format
 
 INSTRUCTION_DEFINITION_TABLE: dict[Opcodes, InstructionDefination] = {

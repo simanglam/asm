@@ -1,14 +1,14 @@
-from enum import StrEnum
+from enum import StrEnum, auto
 
 class FunctCode(StrEnum):
-    ADD = "100000"
-    SUB = "100010"
-    AND = "100100"
-    OR = "100101"
-    MUL = "011000"
-    DIV = "011010"
+    ADD = auto()
+    SUB = auto()
+    AND = auto()
+    OR = auto()
+    MUL = auto()
+    DIV = auto()
     
-    ERR = "000000"
+    ERR = auto()
     
 
 class FunctHelper:

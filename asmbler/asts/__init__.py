@@ -1,3 +1,3 @@
 from .astnode import ASTNode
 from .instructions import Instruction
-from .label import Label
+from .label import LabelNode
