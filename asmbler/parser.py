@@ -11,7 +11,7 @@ from .token import Token
 from .tokenType import TokenType
 from .tokenizer import Tokenizer
 
-from .instructions import ASTNode, Instruction
+from .asts import ASTNode, Instruction
 
 from .util import RegisterHelper
 
