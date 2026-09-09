@@ -1,0 +1,4 @@
+.my_cache
+.venv
+
+**/__pycache__/**

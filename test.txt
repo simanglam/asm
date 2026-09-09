@@ -1,0 +1,4 @@
+J label
+ADDI r2, r21, 200
+
+.text1 
