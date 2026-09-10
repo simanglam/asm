@@ -23,9 +23,7 @@ class Tokenizer:
 
     def consume(self) -> Token:
         self.current_token = copy(self.next_token)
-        if (self.next_char == ""):
-            self.next_token = Token(TokenType.EOF)
-            return self.current_token
+        
 
         while self.current_char.isspace() and self.next_char != "":
             self.current_char = self.next_char
@@ -70,7 +68,8 @@ class Tokenizer:
                             self.next_char = self.file.read(1)
                 
                         self.next_token = Token(TokenType.ID, buffer)
-            
+        if (self.next_char == ""):
+            self.next_token = Token(TokenType.EOF)
         return self.current_token
 
     def peek(self) -> Token:
