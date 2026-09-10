@@ -20,6 +20,7 @@ class Opcodes(StrEnum):
     BEQ = auto()
     J = auto()
     JAL = auto()
+    JR = auto()
     
     # Default Code
     ERR = auto()

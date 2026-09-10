@@ -7,6 +7,9 @@ class FunctCode(StrEnum):
     OR = auto()
     MUL = auto()
     DIV = auto()
+    REM = auto()
+    
+    JR = auto()
     
     ERR = auto()
     
