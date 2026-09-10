@@ -11,5 +11,5 @@ class Instruction(ASTNode):
     oprands: list[Operand]
     
     def visit(self, visitor):
-        pass
+        return visitor.visitInstruction(self)
     

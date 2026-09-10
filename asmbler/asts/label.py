@@ -7,4 +7,4 @@ class LabelNode(ASTNode):
     text: str
     
     def visit(self, visitor):
-        pass
+        return visitor.visitLabel(self)
