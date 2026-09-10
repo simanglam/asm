@@ -1,5 +1,5 @@
 from typing import Self
-from ..instructionVisitor import InstructionVisitor
+from ..passes.instructionVisitor import InstructionVisitor
 from abc import ABC, abstractmethod
 
 from dataclasses import dataclass, field
