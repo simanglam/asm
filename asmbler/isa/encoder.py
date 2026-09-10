@@ -43,7 +43,7 @@ class Encoder():
         ins <<= 10
     
         ins |= FunctMapperTable[funct]
-        return bytes(ins)
+        return ins.to_bytes(4)
         
     def emitJ(self, opcodes: Opcodes, immediate: Immediate) -> bytes:
         if (immediate.val >= 2 ** 26):
