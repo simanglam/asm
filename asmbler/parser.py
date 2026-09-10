@@ -2,6 +2,7 @@ import re
 from tkinter import NO
 from typing import Self, Generator, Set
 
+from asmbler.asts.label import LabelNode
 from asmbler.operands import Label, Immediate, Register
 from asmbler.operands.operand import Operand
 from asmbler.util.funct import FunctHelper
@@ -132,7 +133,7 @@ class Parser:
         
     def parseLabel(self) -> ASTNode:
         self.tokenizer.consume()
-        return Label(self.tokenizer.current_token.getLiteral())
+        return LabelNode(self.tokenizer.current_token.getLiteral())
     
     def panicAndRecover(self) -> ASTNode:
         print(self.tokenizer.current_token)
