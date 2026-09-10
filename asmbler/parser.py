@@ -30,27 +30,25 @@ class Parser:
     
     def parse(self) -> Generator[ASTNode, None, None]:
         while not self.tokenizer.match(TokenType.EOF):
-
             if self.tokenizer.match(TokenType.PERIOD):
                 yield self.parseLabel()
             
             else:
-                
-                    
-                if self.tokenizer.peek().str_literal in instrustion_sets[0]:
+                if self.tokenizer.current_token.str_literal in instrustion_sets[0]:
                     # TODO: Replace with function call
                     yield self.parseThreeAddress() 
                     
-                elif self.tokenizer.peek().str_literal in instrustion_sets[1]:
+                elif self.tokenizer.current_token.str_literal in instrustion_sets[1]:
                     # TODO: Replace with function call
                     yield self.parseTwoAddress()
                 
-                elif self.tokenizer.peek().str_literal in instrustion_sets[2]:
+                elif self.tokenizer.current_token.str_literal in instrustion_sets[2]:
                     yield self.parseOneAddress()
                 else:
                     # TODO: Panic and recover
                     self.panicAndRecover()
             self.tokenizer.consume()
+            
                     
     def parseOneAddress(self) -> ASTNode:
         id = self.tokenizer.current_token.getLiteral()
@@ -121,6 +119,7 @@ class Parser:
         self.tokenizer.consume()
         if not self.tokenizer.match(TokenType.COMMA):
             return self.panicAndRecover()
+        
         self.tokenizer.consume()
         
         operands.append(self.parseOperand())                      
@@ -136,6 +135,7 @@ class Parser:
         return LabelNode(self.tokenizer.current_token.getLiteral())
     
     def panicAndRecover(self) -> ASTNode:
+        print("ERROR")
         print(self.tokenizer.current_token)
         pass
     
