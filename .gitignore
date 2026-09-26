@@ -1,5 +1,13 @@
 .my_cache
 .venv
+.antlr
+.vscode
 
 *.pyc
 **/__pycache__/**
+
+src/parser/generated
+*generate/**
+antlr4-runtime/*
+build/*
+.antlr-generated
