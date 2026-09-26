@@ -6,7 +6,13 @@ options {
 
 
 
-program: (instruction | directive)+;
+program: inst+;
+
+inst: 
+	directive
+	| instruction
+	;
+
 
 directive:
 	PERIOD id = ID
@@ -16,7 +22,7 @@ directive:
 instruction:
 	ID
 	operands += opreand
-	(COMMA operands += opreand)+
+	(COMMA operands += opreand)*
 	;
 
 opreand:
