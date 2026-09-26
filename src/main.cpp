@@ -5,6 +5,7 @@
 #include "asmParser.h"
 #include "CharStream.h"
 #include "ANTLRInputStream.h"
+#include "ASTs/ASTBuilder.h"
 
 using namespace antlr4;
 using namespace std;
@@ -23,9 +24,11 @@ int main() {
 		}
 
 		asmParser parser(&tokens);
-		tree::ParseTree *tree = parser.program();
+		asmParser::ProgramContext* tree = parser.program();
+		ASTBuilder builder;
 
-		std::cout << tree->toStringTree(&parser) << std::endl;
+		builder.visitProgram(tree);
+
 		modelicaFile.close();
 	}
 }
