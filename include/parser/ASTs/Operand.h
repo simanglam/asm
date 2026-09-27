@@ -26,8 +26,9 @@ public:
     
 
 class Label:Operand {
-    std::string target;
+    int offset;
 public:
+    Label(int);
     int encode() override;
 };
     
