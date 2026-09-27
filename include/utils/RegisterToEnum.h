@@ -4,4 +4,4 @@
 
 #include "semantic/RegisterEnum.h"
 
-RegisterEnum RigisterToEnum(std::string);
+RegisterEnum RegisterToEnum(std::string);

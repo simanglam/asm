@@ -1,7 +1,7 @@
 #include "utils/RegisterToEnum.h"
 #include "string"
 
-RegisterEnum RigisterToEnum(std::string text) {
+RegisterEnum RegisterToEnum(std::string text) {
     if (text == "r0") {
         return r0;
     }
