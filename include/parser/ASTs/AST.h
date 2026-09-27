@@ -11,3 +11,5 @@ public:
 
     virtual ~AST() = default;
 };
+
+#include "ASTVisitor.h"
