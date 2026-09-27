@@ -1,4 +1,4 @@
-
+#pragma once
 
 enum InstructionEnum {
     // Arithmetic Code
