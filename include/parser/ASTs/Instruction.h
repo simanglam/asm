@@ -3,11 +3,12 @@
 #include <vector>
 #include "AST.h"
 #include "parser/ASTs/Operand.h"
+#include "semantic/InstructionEnum.h"
 
 class Instruction: AST {
-    std::string text;
+    InstructionEnum instruction;
     std::vector<Operand*> operands;
 public:
-    Instruction(std::string, std::vector<Operand*>);
+    Instruction(InstructionEnum, std::vector<Operand*>);
     std::any accept(ASTVisitor<std::any>&) override;
 };
