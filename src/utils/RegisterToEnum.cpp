@@ -1,4 +1,4 @@
-#include "utils/RigisterToEnum.h"
+#include "utils/RegisterToEnum.h"
 #include "string"
 
 RegisterEnum RigisterToEnum(std::string text) {
