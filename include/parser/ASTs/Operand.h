@@ -6,6 +6,7 @@ class Operand: AST {
 public:
     virtual ~Operand() = default;
     virtual int encode() = 0;
+    std::any accept(ASTVisitor<std::any>& visitor) {return this->encode();}
 };
     
 
@@ -25,7 +26,7 @@ public:
 };
     
 
-class Label:Operand {
+class Label: Operand {
     int offset;
 public:
     Label(int);
