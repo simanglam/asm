@@ -7,4 +7,6 @@ class Program: AST {
 public:
     Program(std::list<AST*>);
     std::any accept(ASTVisitor<std::any>&) override;
+
+    std::list<AST*>& getBody();
 };

@@ -9,3 +9,7 @@ Program::Program(list<AST*> _body): body(_body) {}
 std::any Program::accept(ASTVisitor<std::any>& visitor) {
     return visitor.visitProgram(this);
 }
+
+list<AST*>& Program::getBody() {
+    return body;
+}
