@@ -8,4 +8,7 @@ class Directive: AST {
 public:
     Directive(std::string, int);
     std::any accept(ASTVisitor<std::any>&) override;
+
+    int getVal() const;
+    std::string getText() const;
 };
