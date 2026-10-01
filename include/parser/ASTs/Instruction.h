@@ -11,4 +11,7 @@ class Instruction: AST {
 public:
     Instruction(InstructionEnum, std::vector<Operand*>);
     std::any accept(ASTVisitor<std::any>&) override;
+
+    InstructionEnum getEnum() const;
+    std::vector<Operand*>& getOperands();
 };
