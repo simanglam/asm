@@ -5,13 +5,13 @@ GEN_DIR     := src/parser/generated
 INCLUDE_HEADER_DIR := ./include
 GEN_HEADER_DIR := ./generate
 
-CXXFLAGS    := -std=c++17 -Wall -Wextra
-CPPFLAGS    := -I$(INCLUDE_HEADER_DIR) -I$(GEN_HEADER_DIR) -I./antlr4-runtime
+CXXFLAGS    := -std=c++17 -Wall -Wextra -stdlib=libc++ -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS
+CPPFLAGS    := -I$(INCLUDE_HEADER_DIR) -I$(GEN_HEADER_DIR) -I./antlr4-runtime -I$(shell llvm-config --includedir)
 BREW_PREFIX := $(shell brew --prefix antlr4-cpp-runtime)
 
 ANTLR_LIB := $(BREW_PREFIX)/lib/libantlr4-runtime.a
 
-LDFLAGS = -L/usr/local/lib
+LDFLAGS = -L/usr/local/lib $(shell llvm-config  --ldflags --libs)
 
 LDLIBS := $(ANTLR_LIB)
 
@@ -30,8 +30,10 @@ ANTLR_STAMP := .antlr-generated
 
 .PHONY: all generate compile clean
 
-
 all: generate compile
+
+debug:
+	$(MAKE) CXXFLAGS="$(CXXFLAGS) -g -O0" all
 
 
 generate: $(ANTLR_STAMP)
