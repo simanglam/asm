@@ -58,5 +58,9 @@ any ASTPrinter::visitRegister(Register* ctx) {
 
 any ASTPrinter::visitLabel(Label* ctx) {
     return ctx->getId();
+}
+
+any ASTPrinter::visitLabelNode(LabelNode* ctx) {
+    cout << "Label: " << ctx->getText() << endl;
     return nullptr;
 }

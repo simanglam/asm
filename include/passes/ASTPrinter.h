@@ -11,4 +11,6 @@ public:
     std::any visitImmediate(Immediate*) override;
     std::any visitRegister(Register*) override;
     std::any visitLabel(Label*) override;
+    std::any visitLabelNode(LabelNode*) override;
+
 };
