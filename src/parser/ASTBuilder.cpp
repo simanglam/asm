@@ -1,3 +1,4 @@
+#include <any>
 #include <list>
 #include <vector>
 
@@ -27,6 +28,8 @@ std::any ASTBuilder::visitProgram(asmParser::ProgramContext *context) {
 std::any ASTBuilder::visitInst(asmParser::InstContext *context) {
     if (context->directive() != nullptr)
         return this->visitDirective(context->directive());
+    else if (context->label() != nullptr)
+        return this->visitLabel(context->label());
     else
         return this->visitInstruction(context->instruction());
     return nullptr;
@@ -72,4 +75,11 @@ std::any ASTBuilder::visitOpreand(asmParser::OpreandContext *context) {
     return (Operand*)new Label(
         0, context->ID()->getText()
     );
+}
+
+std::any ASTBuilder::visitLabel(asmParser::LabelContext *context) {
+    return (AST*)
+        new LabelNode(
+            context->ID()->getText()
+        );
 }
