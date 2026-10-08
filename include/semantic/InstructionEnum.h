@@ -16,6 +16,7 @@ enum InstructionEnum {
     DIV,
 
     ADDI,
+    ORI,
     LUI,
     REM,
     

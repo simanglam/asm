@@ -21,6 +21,7 @@ InstructionEnumMapper::InstructionEnumMapper() {
         {MULH, "*"},
         {DIV, "/"},
         {REM, "&"},
+        {ORI, "|"},
         
         // Memory code
         {LW, "<-"},
