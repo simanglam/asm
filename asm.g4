@@ -9,10 +9,14 @@ options {
 program: inst+;
 
 inst: 
-	directive
+	label
 	| instruction
+	| directive
 	;
 
+label:
+	PERIOD ID COLON
+	;
 
 directive:
 	PERIOD id = ID
@@ -21,7 +25,7 @@ directive:
 
 instruction:
 	ID
-	operands += opreand
+	operands += opreand?
 	(COMMA operands += opreand)*
 	;
 
