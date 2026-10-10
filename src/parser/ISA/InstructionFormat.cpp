@@ -41,5 +41,5 @@ std::unordered_map<InstructionEnum, Format> InstructionFormatMapper = {
 };
 
 Format InstructionEnumToFormat(InstructionEnum ins) {
-
+    return InstructionFormatMapper[ins];
 }

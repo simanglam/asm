@@ -4,4 +4,4 @@
 
 #include "utils/InstructionToEnum.h"
 
-int instructionEnumToOpcode(InstructionEnum);
+unsigned int instructionEnumToOpcode(InstructionEnum);

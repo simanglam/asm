@@ -1,44 +1,44 @@
 #include "ISA/InstructionEnumToOpcode.h"
 
-std::unordered_map<InstructionEnum, int> InstructionToFunctMapper = {
-    {ADD, 0x100000},
-    {SUB, 0x100010},
-    {AND, 0x100100},
-    {OR, 0x100101},
-    {XOR, 0x100110},
-    {SLT, 0x101010},
-    {SLL, 0x000000},
-    {SRL, 0x000010},
-    {SRA, 0x000011},
-    {MUL, 0x011000},
-    {MULH, 0x011001},
-    {DIV, 0x011010},
+std::unordered_map<InstructionEnum, unsigned int> InstructionToFunctMapper = {
+    {ADD, 0b100000},
+    {SUB, 0b100010},
+    {AND, 0b100100},
+    {OR, 0b100101},
+    {XOR, 0b100110},
+    {SLT, 0b101010},
+    {SLL, 0b000000},
+    {SRL, 0b000010},
+    {SRA, 0b000011},
+    {MUL, 0b011000},
+    {MULH, 0b011001},
+    {DIV, 0b011010},
 
-    {ADDI, 0x0},
-    {ORI, 0x0},
-    {LUI, 0x0},
-    {REM, 0x0},
+    {ADDI, 0b0},
+    {ORI, 0b0},
+    {LUI, 0b0},
+    {REM, 0b0},
     
     // Memory code
-    {LW, 0x100011},
-    {LB, 0x100000},
-    {LBU, 0x100100},
-    {LH, 0x100001},
-    {LHU, 0x100101},
+    {LW, 0b100011},
+    {LB, 0b100000},
+    {LBU, 0b100100},
+    {LH, 0b100001},
+    {LHU, 0b100101},
 
-    {SW, 0x101011},
-    {SB, 0x101000},
-    {SH, 0x101001},
+    {SW, 0b101011},
+    {SB, 0b101000},
+    {SH, 0b101001},
     
     // Jump Code
-    {BEQ, 0x0},
-    {BNE, 0x0},
-    {J, 0x0},
-    {JAL, 0x0},
-    {JR, 0x001000},
+    {BEQ, 0b0},
+    {BNE, 0b0},
+    {J, 0b0},
+    {JAL, 0b0},
+    {JR, 0b001000},
     
     // Default Code
-    {ERR, 0x0}
+    {ERR, 0b0}
 };
 
 int instructionEnumToFunct(InstructionEnum ins) {
