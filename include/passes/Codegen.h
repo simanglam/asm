@@ -1,10 +1,16 @@
 #pragma once
 
+#include <list>
+
 #include "parser/ASTs/ASTVisitor.h"
 #include "Encoder.h"
 
+#include "utils/AssembleContext.h"
+
 class Codegen: ASTVisitor<std::any> {
     Encoder* encoder;
+    AssembleContext* assembleContext;
+    std::list<Bytes*>* result;
 public:
     Codegen(Encoder*);
     ~Codegen();

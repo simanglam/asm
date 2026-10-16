@@ -6,11 +6,14 @@
 
 #include <vector>
 #include <iostream>
+
 #include "parser/ASTs/Operand.h"
+
+#include "utils/Bytes.h"
 
 using namespace std;
 
-unsigned int EncoderImpl::encode(Instruction* ins) {
+Bytes* EncoderImpl::encode(Instruction* ins) {
     switch (InstructionEnumToFormat(ins->getEnum())) {
         case RFORMAT:
             return encode_r(ins);
@@ -21,7 +24,7 @@ unsigned int EncoderImpl::encode(Instruction* ins) {
     }
 }
 
-unsigned int EncoderImpl::encode_r(Instruction* ins) {
+Bytes* EncoderImpl::encode_r(Instruction* ins) {
     unsigned int result = 0;
     vector<Operand*> operands = ins->getOperands();
     if (operands.size() != 3 && operands.size() != 1) {
@@ -44,16 +47,8 @@ unsigned int EncoderImpl::encode_r(Instruction* ins) {
     }
 
     result |= opcode << 26;
-
     result |= rs << 21;
-
     result |= rt << 16;
-
-    cout << rs << endl;
-    cout << rt << endl;
-    cout << rd << endl;
-    cout << opcode << endl;
-    cout << funct << endl;
 
     if (opcode == SLT || opcode == SLL || opcode == SRA || opcode == SRL) {
         result |= rd << 11;
@@ -63,10 +58,10 @@ unsigned int EncoderImpl::encode_r(Instruction* ins) {
         result |= rd << 11;
     }
     result |= funct;
-    return result;
+    return new Bytes(result, 4);
 }
 
-unsigned int EncoderImpl::encode_i(Instruction* ins) {
+Bytes* EncoderImpl::encode_i(Instruction* ins) {
     unsigned int result = 0;
     vector<Operand*> operands = ins->getOperands();
     if (operands.size() < 2) {
@@ -76,6 +71,8 @@ unsigned int EncoderImpl::encode_i(Instruction* ins) {
 
     
     unsigned int rs = 0, rt = 0, opcode = 0, immediate = 0;
+
+    opcode = instructionEnumToOpcode(ins->getEnum());
     
     if (operands.size() == 3) {
         rt = any_cast<unsigned int>(operands[0]->accept(operandEncoder));
@@ -89,21 +86,18 @@ unsigned int EncoderImpl::encode_i(Instruction* ins) {
     }
 
 
-    result |= instructionEnumToOpcode(ins->getEnum());
-    result <<= 5;
+    result |= opcode << 26;
 
-    result |= rs;
-    result <<= 5;
+    result |= rs << 21;
 
-    result |= rt;
-    result <<= 16;
+    result |= rt << 16;
 
     result |= immediate;
 
-    return result;
+    return new Bytes(result, 4);
 }
 
-unsigned int EncoderImpl::encode_j(Instruction* ins) {
+Bytes* EncoderImpl::encode_j(Instruction* ins) {
     int result = 0;
     vector<Operand*> operands = ins->getOperands();
     if (operands.size() != 1) {
@@ -120,5 +114,5 @@ unsigned int EncoderImpl::encode_j(Instruction* ins) {
 
     
     result |= target;
-    return result;
+    return new Bytes(result, 4);
 }

@@ -7,7 +7,8 @@
 using namespace std;
 
 Codegen::Codegen(Encoder* _encoder): encoder(_encoder) {
-
+    assembleContext = AssembleContext::getInstance();
+    result = new list<Bytes*>();
 }
 
 Codegen::~Codegen() {
@@ -15,19 +16,24 @@ Codegen::~Codegen() {
 }
 
 any Codegen::visitProgram(Program* ctx) {
-    list<Bytes*>* result = new list<Bytes*>();
     for (auto node : ctx->getBody())
-        result->push_back(any_cast<Bytes*>(node->accept(*this)));
+        node->accept(*this);
     return result;
 }
 
 any Codegen::visitDirective(Directive* ctx) {
-    cout << "Directive: " << ctx->getText() << " " << ctx->getVal() << endl;
+    if (ctx->getText() == "word")
+        result->push_back(new Bytes(ctx->getVal(), 4));
+    if (ctx->getText() == "half")
+        result->push_back(new Bytes(ctx->getVal(), 2));
+    if (ctx->getText() == "byte")
+        result->push_back(new Bytes(ctx->getVal(), 1));
     return 0;
 }
 
 any Codegen::visitInstruction(Instruction* ctx) {
-    return encoder->encode(ctx);
+    result->push_back(encoder->encode(ctx));
+    return 0;
 }
 
 any Codegen::visitOperand(Operand* ctx) {
