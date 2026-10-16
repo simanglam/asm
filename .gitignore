@@ -11,3 +11,4 @@ src/parser/generated
 antlr4-runtime/*
 build/*
 .antlr-generated
+test.as
