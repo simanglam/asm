@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 class Bytes {
     unsigned char* bytes;
     int _size;
@@ -11,4 +12,6 @@ public:
 
     unsigned char* encodeToLittle();
     unsigned char* encodeToBig();
+
+    friend std::ostream& operator<<(std::ostream&, Bytes&);
 };

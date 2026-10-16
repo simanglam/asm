@@ -1,7 +1,10 @@
 #include "utils/Bytes.h"
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <cmath>
 #include <cstring>
+#include <format>
 
 using namespace std;
 
@@ -14,6 +17,7 @@ Bytes::Bytes(unsigned int _bytes, int size): _size(size) {
 
     for (int i = size - 1; i >= 0; i--) {
         bytes[i] = _bytes & 0xFF;
+        _bytes >>= 8;
     }
 }
 
@@ -39,4 +43,16 @@ unsigned char* Bytes::encodeToBig() {
 
     memcpy(returnBytes, bytes, _size);
     return returnBytes;
+}
+
+std::ostream& operator<<(std::ostream& os, Bytes& bytes) {
+    char buf[50];
+
+    for (int i = 0; i < bytes.size(); i++) {
+        sprintf(buf, "%02x", bytes.bytes[i]);
+        os << buf;
+    }
+        
+    
+    return os;
 }
