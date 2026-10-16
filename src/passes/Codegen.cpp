@@ -15,9 +15,9 @@ Codegen::~Codegen() {
 }
 
 any Codegen::visitProgram(Program* ctx) {
-    list<unsigned int>* result = new list<unsigned int>();
+    list<Bytes*>* result = new list<Bytes*>();
     for (auto node : ctx->getBody())
-        result->push_back(any_cast<unsigned int>(node->accept(*this)));
+        result->push_back(any_cast<Bytes*>(node->accept(*this)));
     return result;
 }
 

@@ -6,11 +6,11 @@
 class EncoderImpl: public Encoder {
     OperandEncoder operandEncoder;
 
-    unsigned int encode_r(Instruction*);
-    unsigned int encode_i(Instruction*);
-    unsigned int encode_j(Instruction*);
+    Bytes* encode_r(Instruction*);
+    Bytes* encode_i(Instruction*);
+    Bytes* encode_j(Instruction*);
 
 public:
     // EncoderImpl();
-    unsigned int encode(Instruction*);
+    Bytes* encode(Instruction*);
 };
