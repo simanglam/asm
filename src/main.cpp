@@ -11,6 +11,8 @@
 #include "passes/Codegen.h"
 #include "ISA/EncoderImpl.h"
 
+#include "utils/Bytes.h"
+
 using namespace antlr4;
 using namespace std;
 
@@ -45,13 +47,10 @@ int main() {
 
 		Program* p = std::any_cast<Program*>(builder.visitProgram(tree));
 		printer.visitProgram(p);
-		list<unsigned int>* l = any_cast<list<unsigned int>*>(codegen.visitProgram(p));
+		list<Bytes*>* l = any_cast<list<Bytes*>*>(codegen.visitProgram(p));
 		
-		for (int i : *l) {
-			printf("0x%08x\n", i);
-			cout << ((i & 0xFC000000) >> 26) << endl;
-			cout << ((i & 0x03E00000) >> 21) << endl;
-			cout << ((i & 0x001F0000) >> 16) << endl;
+		for (Bytes* i : *l) {
+			cout << *i << endl;
 		}
 	}
 }
